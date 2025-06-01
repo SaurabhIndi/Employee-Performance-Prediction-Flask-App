@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict - Productivity Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+        .navbar { background-color: #333; padding: 10px; }
+        .navbar a { color: white; text-decoration: none; margin: 0 15px; }
+        .navbar a:hover { color: #ddd; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: white; border-radius: 5px; }
+        h1 { color: #333; }
+        form { display: flex; flex-direction: column; gap: 10px; }
+        label { font-weight: bold; }
+        input, select { padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #4CAF50; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; width: 150px; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/predict">Predict</a>
+        <a href="/about">About</a>
+    </div>
+    <div class="container">
+        <h1>Enter Details for Prediction</h1>
+        <form action="/submit" method="POST">
+            <label for="quarter">Quarter:</label>
+            <select name="quarter" id="quarter">
+                <option value="Quarter1">Quarter1</option>
+                <option value="Quarter2">Quarter2</option>
+                <option value="Quarter3">Quarter3</option>
+                <option value="Quarter4">Quarter4</option>
+                <option value="Quarter5">Quarter5</option>
+            </select>
+
+            <label for="department">Department:</label>
+            <select name="department" id="department">
+                <option value="sweing">Sweing</option>
+                <option value="finishing">Finishing</option>
+            </select>
+
+            <label for="day">Day:</label>
+            <select name="day" id="day">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select>
+
+            <label for="team">Team:</label>
+            <input type="number" name="team" id="team" step="1" required>
+
+            <label for="targeted_productivity">Targeted Productivity:</label>
+            <input type="number" name="targeted_productivity" id="targeted_productivity" step="0.01" required>
+
+            <label for="smv">SMV:</label>
+            <input type="number" name="smv" id="smv" step="0.01" required>
+
+            <label for="wip">WIP:</label>
+            <input type="number" name="wip" id="wip" step="1" required>
+
+            <label for="over_time">Over Time:</label>
+            <input type="number" name="over_time" id="over_time" step="1" required>
+
+            <label for="incentive">Incentive:</label>
+            <input type="number" name="incentive" id="incentive" step="1" required>
+
+            <label for="idle_time">Idle Time:</label>
+            <input type="number" name="idle_time" id="idle_time" step="0.01" required>
+
+            <label for="idle_men">Idle Men:</label>
+            <input type="number" name="idle_men" id="idle_men" step="1" required>
+
+            <label for="no_of_style_change">No of Style Change:</label>
+            <input type="number" name="no_of_style_change" id="no_of_style_change" step="1" required>
+
+            <label for="no_of_workers">No of Workers:</label>
+            <input type="number" name="no_of_workers" id="no_of_workers" step="1" required>
+
+            <label for="month">Month:</label>
+            <input type="number" name="month" id="month" step="1" min="1" max="12" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
