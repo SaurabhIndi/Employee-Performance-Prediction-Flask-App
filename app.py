@@ -7,12 +7,12 @@ from sklearn.preprocessing import LabelEncoder
 # Initialize Flask app
 app = Flask(__name__)
 
-# Load the saved model
-model_filename = 'xgb_model.sav'  # Update with the correct model file (e.g., rf_model.sav or lr_model.sav)
+# Load both saved models
 try:
-    model = pickle.load(open(model_filename, 'rb'))
-except FileNotFoundError:
-    print(f"Error: Model file '{model_filename}' not found. Please ensure the model is saved correctly.")
+    model_rf = pickle.load(open('rf_model.sav', 'rb'))
+    model_xgb = pickle.load(open('xgb_model.sav', 'rb'))
+except FileNotFoundError as e:
+    print(f"Error: Model file not found: {e}. Please ensure both 'rf_model.sav' and 'xgb_model.sav' are in the project root.")
     exit(1)
 
 # Initialize LabelEncoders for categorical features
@@ -69,11 +69,14 @@ def submit():
             no_of_workers, month
         ]])
 
-        # Make prediction
-        prediction = model.predict(input_data)[0]
+        # Make predictions with both models
+        prediction_rf = model_rf.predict(input_data)[0]
+        prediction_xgb = model_xgb.predict(input_data)[0]
 
-        # Render the result on submit.html
-        return render_template('submit.html', prediction=round(prediction, 4))
+        # Render the results on submit.html
+        return render_template('submit.html', 
+                             prediction_rf=round(prediction_rf, 4),
+                             prediction_xgb=round(prediction_xgb, 4))
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
